@@ -88,6 +88,20 @@ public:
      */
     virtual void setAvailability(bool online);
 
+    /**
+     * Sets private data.
+     * Private data can be set and retreived by the user. It is not touched by the library.
+     */
+    inline void setPrivateData(void *data)
+    {
+        _privateData = data;
+    }
+
+    inline void * getPrivateData(void)
+    {
+        return _privateData;
+    }
+
 #ifdef ARDUINOHA_TEST
     inline HASerializer* getSerializer() const
         { return _serializer; }
@@ -211,6 +225,9 @@ protected:
 
     /// HASerializer that belongs to this device type. It can be nullptr.
     HASerializer* _serializer;
+
+    /// Private user data, not used by library
+    void *_privateData;
 
 private:
     enum Availability {

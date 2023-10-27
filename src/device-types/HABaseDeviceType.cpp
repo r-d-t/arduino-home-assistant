@@ -12,12 +12,25 @@ HABaseDeviceType::HABaseDeviceType(
     _uniqueId(uniqueId),
     _name(nullptr),
     _serializer(nullptr),
-    _availability(AvailabilityDefault)
+    _availability(AvailabilityDefault),
+    _privateData(nullptr)
 {
     if (mqtt()) {
         mqtt()->addDeviceType(this);
     }
 }
+
+#if 0
+void HABaseDeviceType::setPrivateData(void *data)
+{
+    _privateData = data;
+}
+
+void * HABaseDeviceType::getPrivateData(void)
+{
+    return _privateData;
+}
+#endif
 
 void HABaseDeviceType::setAvailability(bool online)
 {
